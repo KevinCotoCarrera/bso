@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Login">
+	<main>
+		
+		<div class="bg bg-left"></div>
+		<div class="bg bg-right"></div>
+		
+		<div class="login-container">
+			<img class="logo" src="./logo.svg"/>
+			<h2>Welcome</h2>
+			<p class="welcome-message">Welcome to Lamp <br> Where you can find the best furniture in the entire UAE. Sign in to start exploring.</p>
+			<form action="/login" method="POST">
+			  <label for="username">Username</label>
+			  <input type="text" id="username" name="username" required>
+		
+			  <label for="email">Email</label>
+			  <input type="email" id="email" name="email" required>
+		
+			  <label for="password">Password</label>
+			  <input type="password" id="password" name="password" required>
+		
+			  <button type="submit">Login</button>
+			</form>
+		  </div>
+	</main>
+</Layout>
+
+
+<style>
+
+.login-container {
+	/* display: flex;
+	flex-direction: column;
+	align-items: center; */
+      background-color: rgba(0, 0, 0, 0);
+	  backdrop-filter: blur(100px);
+      padding: 180px;
+      border-radius: 10px;
+	  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      width: 350px;
+	  z-index: 10;
+	  border-radius: 10% 10% 0px 0px;
+	  color: white;
+    }
+	.bg {
+		position: absolute;
+		width: 50.5vw; /* 0.5 extra percentage to avoid a white line in the middle */
+		height: 100vh; /* Full viewport height */
+		background-size: cover;
+		background-position: center;
+		top: 0;
+
+	}
+	.bg-left{
+		background-image: url('/public/bg-left.jpg');
+		border-top-right-radius: 250px;
+		left: 0;
+	}
+	.bg-right{
+		background-image: url('/public/bg-right.jpg');
+		border-top-left-radius: 250px;
+		right: 0;
+
+	}
+	.logo{
+		position: relative;
+		top: -50px;
+
+		width: 70px;
+		height: 70px;
+	}
+	main{
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: flex-end;
+	}
+    h2 {
+
+      margin-right: auto;
+      margin-bottom: 20px;
+	  font-weight: 200;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+	
+    }
+	
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+	  background-color: rgba(0, 0, 0, 0.1);
+	  color: white;
+	  font-weight: 100;
+	  backdrop-filter: blur(50px);
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+	  align-self: flex-end;
+      padding: 10px;
+      background-color: #764ba2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+	  transition: background-color 0.5s ;
+    }
+
+    button:hover {
+      background-color: #4d0a8f;
+    }
+</style>
