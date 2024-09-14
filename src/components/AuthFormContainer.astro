@@ -1,0 +1,80 @@
+---
+const currentUrl = Astro.url.pathname;
+const isLogin = currentUrl.includes('/login');
+---
+
+<main>
+		
+	<div class="bg bg-left"></div>
+	<div class="bg bg-right"></div>
+	
+	<div class="login-container">
+		<img class="logo" src="./logo.svg"/>
+		<h2>Welcome</h2>
+		<p class="welcome-message">Hey, welcome {isLogin ? 'again' : ''} to Lamp <br> Where you can find the best furniture in the entire UAE. {isLogin ? 'Sign in' : 'Sign up'} in to start exploring.</p>
+
+		<slot></slot>
+	  </div>
+</main>
+
+
+
+<style>
+
+	.login-container {
+		  background-color: rgba(0, 0, 0, 0);
+		  backdrop-filter: blur(100px);
+		  padding: 150px 180px 150px 180px;
+		  border-radius: 10px;
+		  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+		  width: 350px;
+		  z-index: 10;
+		  border-radius: 10% 10% 0px 0px;
+		  color: white;
+		}
+		.bg {
+			position: absolute;
+			width: 50.5vw; /* 0.5 extra percentage to avoid a white line in the middle */
+			height: 100vh; /* Full viewport height */
+			background-size: cover;
+			background-position: center;
+			top: 0;
+	
+		}
+		.bg-left{
+			background-image: url('/public/bg-left.jpg');
+			border-top-right-radius: 250px;
+			left: 0;
+		}
+		.bg-right{
+			background-image: url('/public/bg-right.jpg');
+			border-top-left-radius: 250px;
+			right: 0;
+	
+		}
+		.logo{
+			position: relative;
+			top: -0px;
+			left: -24px;
+			width: 104px;
+			height: 104px;
+		}
+
+		.welcome-message{
+			margin-bottom: 48px;
+		}
+		main{
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			position: relative;
+			justify-content: center;
+			align-items: flex-end;
+		}
+		h2 {
+		
+		  margin-right: auto;
+		  font-weight: 200;
+		}
+	
+	</style>
