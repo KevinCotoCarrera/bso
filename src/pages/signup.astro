@@ -1,0 +1,25 @@
+---
+import AuthFormContainer from "../components/AuthFormContainer.astro";
+import Button from "../components/Button.astro";
+import PasswordToggle from "../components/PasswordToggle.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Sign Up">
+	<AuthFormContainer>
+		
+		
+		<form action="/login" method="POST">
+			
+		  <label for="email">Email</label>
+		  <input type="email" id="email" name="email" required>
+	
+		  <label for="password">Password</label>
+		  <PasswordToggle id="password"/>
+	
+		  <Button type="submit" text="Sign Up"/>
+
+		</form>
+	</AuthFormContainer>
+
+</Layout>
