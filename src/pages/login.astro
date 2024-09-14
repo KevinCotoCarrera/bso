@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import AuthFormContainer from "../components/AuthFormContainer.astro";
 import PasswordToggle from "../components/PasswordToggle.astro";
 import Button from "../components/Button.astro";
+import { ViewTransitions, fade } from 'astro:transitions';
 
 
 ---
@@ -11,7 +12,7 @@ import Button from "../components/Button.astro";
 		<AuthFormContainer>
 			
 			
-			<form action="/login" method="POST">
+			<form  transition:animate={fade({duration: '0.4s'})}  action="/login" method="POST">
 			  <label for="email">Email</label>
 			  <input type="email" id="email" name="email" required>
 		
@@ -20,7 +21,7 @@ import Button from "../components/Button.astro";
 			<Button type="submit" text="Login"/>
 			</form>
 		</AuthFormContainer>
-
+		<ViewTransitions/>
 </Layout>
   <script is:inline>
 	document.addEventListener('DOMContentLoaded', () => {
