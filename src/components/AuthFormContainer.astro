@@ -19,7 +19,7 @@ const isLogin = currentUrl.includes('/login');
 
 
 
-<style>
+<style is:global>
 
 	.login-container {
 		  background-color: rgba(0, 0, 0, 0);
@@ -76,5 +76,18 @@ const isLogin = currentUrl.includes('/login');
 		  margin-right: auto;
 		  font-weight: 200;
 		}
-	
+		input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+	  background-color: rgba(0, 0, 0, 0.1);
+	  color: white;
+	  font-weight: 100;
+	  backdrop-filter: blur(50px);
+      margin: 5px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
 	</style>

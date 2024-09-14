@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AuthFormContainer from "../components/AuthFormContainer.astro";
+import PasswordToggle from "../components/PasswordToggle.astro";
+import Button from "../components/Button.astro";
 
 
 ---
@@ -14,12 +16,8 @@ import AuthFormContainer from "../components/AuthFormContainer.astro";
 			  <input type="email" id="email" name="email" required>
 		
 			  <label for="password">Password</label>
-			  <div style="position: relative;">
-				  <input type="password" id="password" name="password" required>
-				  <span id="togglePassword" class="togglePassword">👁️</span>
-			  </div>
-		
-			  <button type="submit">Login</button>
+			  <PasswordToggle id="password"/>
+			<Button type="submit" text="Login"/>
 			</form>
 		</AuthFormContainer>
 
@@ -81,20 +79,7 @@ import AuthFormContainer from "../components/AuthFormContainer.astro";
 	
     }
 	
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px;
-	  background-color: rgba(0, 0, 0, 0.1);
-	  color: white;
-	  font-weight: 100;
-	  backdrop-filter: blur(50px);
-      margin: 5px 0 15px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-    }
+    
 	.togglePassword{
 		cursor: pointer;
 		position: absolute; 
