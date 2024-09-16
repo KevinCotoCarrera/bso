@@ -1,19 +1,22 @@
 ---
+import type { object } from "astro:schema";
 import AuthFormContainer from "../components/AuthFormContainer.astro";
 import Button from "../components/Button.astro";
 import PasswordToggle from "../components/PasswordToggle.astro";
 import Layout from "../layouts/Layout.astro";
 import { ViewTransitions, fade } from 'astro:transitions';
+const currentUrl = Astro.url.pathname;
+
 ---
 
 <Layout title="Sign Up">
 	<AuthFormContainer >
 		
 		
-		<form transition:animate={fade({duration: '0.4s'})}  action="/login" method="POST">
+		<form id="form" transition:animate={fade({duration: '0.4s'})}  method="POST" >
 				
-		<label for="name">Name</label>
-		<input type="text" id="name" name="name" required>
+		<label for="username">Name</label>
+		<input type="text" id="username" name="username" required>
 		  <label for="email">Email</label>
 		  <input type="email" id="email" name="email" required>
 	
@@ -26,3 +29,43 @@ import { ViewTransitions, fade } from 'astro:transitions';
 	</AuthFormContainer>
 	<ViewTransitions/>
 </Layout>
+
+<script>
+	import {actions} from "astro:actions"
+	import { isInputError } from "astro:actions";
+	import Form from "@/utils/form"
+	
+  
+	
+  
+	function renderMessage(error: any, data: any, form: HTMLFormElement) {
+	  if (error && isInputError(error)) {
+		const message = error.fields.email && error.fields.email[0];
+		Form.addMessageElement(message || "", form);
+	  } else {
+		if (data?.strapiErrors) {
+		  const message = data?.strapiErrors.message;
+		  Form.addMessageElement(message, form);
+		} else {
+			setTimeout(() => {
+				window.location.replace('http://localhost:4321/login')
+			}, 1000);
+		}
+	  }
+	}
+  
+	const form = document.getElementById("form") as HTMLFormElement;
+	
+	async function handleFormSubmit(e: Event) {
+	  e.preventDefault();
+	
+	  const formData = new FormData(form);
+  
+	  const { data, error } = await actions.sign_up(formData);
+		Form.clearPreviousMessage('message')
+		renderMessage(error, data, form)
+	 
+	}
+  
+	form.addEventListener("submit", handleFormSubmit);
+  </script>
