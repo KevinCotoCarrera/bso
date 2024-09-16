@@ -32,27 +32,12 @@ const currentUrl = Astro.url.pathname;
 
 <script>
 	import {actions} from "astro:actions"
-	import { isInputError } from "astro:actions";
 	import Form from "@/utils/form"
 	
   
 	
   
-	function renderMessage(error: any, data: any, form: HTMLFormElement) {
-	  if (error && isInputError(error)) {
-		const message = error.fields.email && error.fields.email[0];
-		Form.addMessageElement(message || "", form);
-	  } else {
-		if (data?.strapiErrors) {
-		  const message = data?.strapiErrors.message;
-		  Form.addMessageElement(message, form);
-		} else {
-			setTimeout(() => {
-				window.location.replace('http://localhost:4321/login')
-			}, 1000);
-		}
-	  }
-	}
+	
   
 	const form = document.getElementById("form") as HTMLFormElement;
 	
@@ -62,8 +47,9 @@ const currentUrl = Astro.url.pathname;
 	  const formData = new FormData(form);
   
 	  const { data, error } = await actions.sign_up(formData);
-		Form.clearPreviousMessage('message')
-		renderMessage(error, data, form)
+		const basePath = window.location.origin
+		const url = new URL('/login', basePath)
+		Form.renderMessage(error, data, form, url)
 	 
 	}
   

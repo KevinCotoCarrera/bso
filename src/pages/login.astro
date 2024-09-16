@@ -32,21 +32,7 @@ import { ViewTransitions, fade } from 'astro:transitions';
 	import Form from "@/utils/form"
 	
   
-	function renderMessage(error: any, data: any, form: HTMLFormElement) {
-	  if (error && isInputError(error)) {
-		const message = error.fields.email && error.fields.email[0];
-		Form.addMessageElement(message || "", form);
-	  } else {
-		if (data?.strapiErrors) {
-		  const message = data?.strapiErrors.message;
-		  Form.addMessageElement(message, form);
-		} else {
-			setTimeout(() => {
-				window.location.replace('http://localhost:4321/dashboard')
-			}, 1000);
-		}
-	  }
-	}
+	
   
 	const form = document.getElementById("form") as HTMLFormElement;
 	
@@ -56,8 +42,9 @@ import { ViewTransitions, fade } from 'astro:transitions';
 	  const formData = new FormData(form);
   
 	  const { data, error } = await actions.sign_in(formData);
-		Form.clearPreviousMessage('message')
-		renderMessage(error, data, form)
+	  	const basePath = window.location.origin
+		const url = new URL('/dashboard', basePath)
+		Form.renderMessage(error, data, form, url)
 	 
 	}
   
