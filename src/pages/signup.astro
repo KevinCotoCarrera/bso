@@ -13,7 +13,7 @@ const currentUrl = Astro.url.pathname;
 	<AuthFormContainer >
 		
 		
-		<form id="form" transition:animate={fade({duration: '0.4s'})}  method="POST" >
+		<form id="form"   method="POST" >
 				
 		<label for="username">Name</label>
 		<input type="text" id="username" name="username" required>
@@ -27,7 +27,6 @@ const currentUrl = Astro.url.pathname;
 
 		</form>
 	</AuthFormContainer>
-	<ViewTransitions/>
 </Layout>
 
 <script>
